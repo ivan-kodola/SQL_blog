@@ -1,7 +1,7 @@
 USE blog;
 
-SELECT authors.id, firstname, surname,
-COUNT(posts.author_id) as count_posts
-FROM authors
-JOIN posts ON (authors.id = posts.author_id)
-GROUP BY authors.id LIMIT 5;
+SELECT a.id, a.firstname, a.surname,
+COUNT(p.author_id) as count_posts
+FROM authors a
+JOIN posts p ON (a.id = p.author_id)
+GROUP BY a.id LIMIT 5;

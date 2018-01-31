@@ -1,7 +1,7 @@
 USE blog;
 
-SELECT tags.name, 
-COUNT(posts_tags.tag_id) AS count_posts
-FROM tags
-LEFT JOIN posts_tags ON (tags.id = posts_tags.tag_id)
-GROUP BY tags.name;
+SELECT t.name, 
+COUNT(pt.tag_id) AS count_posts
+FROM tags t
+LEFT JOIN posts_tags pt ON (pt.tag_id = t.id)
+GROUP BY t.name;
