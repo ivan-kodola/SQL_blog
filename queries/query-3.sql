@@ -1,3 +1,3 @@
 USE blog;
 
-SELECT * FROM posts ORDER BY post_date DESC LIMIT 5;
+SELECT * FROM posts ORDER BY date DESC LIMIT 5;

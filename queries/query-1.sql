@@ -1,3 +1,3 @@
 USE blog;
 
-SELECT COUNT(post_id) FROM posts;
+SELECT COUNT(id) AS all_posts FROM posts;

@@ -23,11 +23,13 @@ DROP TABLE IF EXISTS `authors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `authors` (
-  `author_id` int(5) NOT NULL AUTO_INCREMENT,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) DEFAULT NULL,
   `surname` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`author_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +38,7 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
-INSERT INTO `authors` VALUES (1,'Alexandr','Ivanov'),(2,'Ivan','Petrov'),(3,'Dmitriy','Shevchenko'),(4,'Oleg','Shpytsya'),(5,'Igor','Grusha'),(6,'Oksana','Petrova'),(7,'Ivana','Ivanova'),(8,'Iryna','Shevchenko'),(9,'Olga','Petrova'),(10,'Yulia','Dovga');
+INSERT INTO `authors` VALUES (1,'Ivan','Ivanov','ivan.ivanov','password'),(2,'Oleg','Petrov','oleg.petrov','password'),(3,'Igor','Kozlov','igor.kozlov','password'),(4,'Petro','Petrov','petro.petrov','password'),(5,'Alex','Bohun','alex.bohun','password'),(6,'Ivana','Bohunova','ivana.bohunova','password'),(7,'Yulia','Dovga','yulia.dovga','password'),(8,'Oksana','Petrova','oksana.petrova','password'),(9,'Ira','Kozlova','ira.ikozlova','password'),(10,'Maria','Shevchenko','maria.shevchenko','password');
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -48,14 +50,14 @@ DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
-  `post_id` int(5) NOT NULL AUTO_INCREMENT,
-  `post_title` text,
-  `post_text` text,
-  `post_date` date DEFAULT NULL,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `title` text,
+  `text` text,
+  `date` date DEFAULT NULL,
   `author_id` int(5) NOT NULL,
-  PRIMARY KEY (`post_id`),
+  PRIMARY KEY (`id`),
   KEY `author_id` (`author_id`),
-  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`)
+  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -65,7 +67,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'Article 1','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2018-01-28',1),(2,'Article 2','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2018-01-28',1),(3,'Article 3','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2018-01-28',2),(4,'Article 4','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-10-15',2),(5,'Article 5','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-08-03',3),(6,'Article 6','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-10-25',3),(7,'Simple Article 7','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-12-21',4),(8,'Simple Article 8','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-02-25',4),(9,'Simple Article 9','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-07-02',5),(10,'Simple Article 10','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-07-05',5),(11,'Simple Article 11','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-09-15',6),(12,'Article 12','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-10-15',7),(13,'Article 13','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-11-16',8),(14,'Article 14','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-08-15',9),(15,'Article 15','Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia ea, praesentium sint odio quis impedit esse reprehenderit optio assumenda cumque, libero illo autem, nostrum quae nam natus sapiente quidem ex, velit non inventore hic. Incidunt explicabo dignissimos rem repudiandae temporibus, voluptate quisquam, dolor. Unde quos repellendus iste, quo deserunt rerum!','2017-12-15',10);
+INSERT INTO `posts` VALUES (1,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2017-01-01',1),(2,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2017-01-02',1),(3,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2017-09-03',2),(4,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2017-10-01',2),(5,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2017-11-01',3),(6,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2017-12-01',3),(7,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-01',4),(8,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-02',4),(9,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-03',5),(10,'Post simle.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-09',5),(11,'Simple post.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-10',6),(12,'Simple post.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-11',7),(13,'Simple post.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-12',8),(14,'Simple post.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-30',9),(15,'Simple post.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodmtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','2018-01-30',10);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,11 +80,11 @@ DROP TABLE IF EXISTS `posts_tags`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts_tags` (
   `post_id` int(5) NOT NULL,
-  `tag_name` varchar(50) NOT NULL,
-  KEY `post_id` (`post_id`),
-  KEY `tag_name` (`tag_name`),
-  CONSTRAINT `posts_tags_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`),
-  CONSTRAINT `posts_tags_ibfk_2` FOREIGN KEY (`tag_name`) REFERENCES `tags` (`tag_name`)
+  `tag_id` int(5) NOT NULL,
+  PRIMARY KEY (`post_id`,`tag_id`),
+  KEY `tag_id` (`tag_id`),
+  CONSTRAINT `posts_tags_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
+  CONSTRAINT `posts_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,7 +94,7 @@ CREATE TABLE `posts_tags` (
 
 LOCK TABLES `posts_tags` WRITE;
 /*!40000 ALTER TABLE `posts_tags` DISABLE KEYS */;
-INSERT INTO `posts_tags` VALUES (1,'sport'),(1,'culture'),(2,'science'),(3,'policy'),(4,'IT'),(5,'economy'),(6,'sport'),(10,'culture'),(11,'science'),(12,'policy'),(13,'IT'),(14,'economy'),(15,'sport'),(15,'culture'),(15,'science'),(13,'policy'),(14,'IT'),(11,'economy'),(10,'sport'),(5,'culture'),(6,'science'),(4,'policy'),(3,'IT'),(2,'economy');
+INSERT INTO `posts_tags` VALUES (1,1),(4,1),(7,1),(10,1),(1,2),(2,2),(4,2),(7,2),(8,2),(10,2),(4,3),(5,3),(8,3),(11,3),(3,4),(4,4),(11,4),(12,4),(2,5),(6,5),(9,5),(12,5),(1,6),(6,6);
 /*!40000 ALTER TABLE `posts_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,10 +106,11 @@ DROP TABLE IF EXISTS `tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tags` (
-  `tag_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`tag_name`),
-  UNIQUE KEY `tag_name` (`tag_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +119,7 @@ CREATE TABLE `tags` (
 
 LOCK TABLES `tags` WRITE;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
-INSERT INTO `tags` VALUES ('culture'),('economy'),('IT'),('news'),('policy'),('science'),('sport');
+INSERT INTO `tags` VALUES (5,'art'),(3,'culture'),(1,'news'),(6,'policy'),(2,'sport'),(4,'technology');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -129,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-29 17:19:13
+-- Dump completed on 2018-01-31 13:13:43
